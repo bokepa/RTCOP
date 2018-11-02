@@ -15,7 +15,8 @@ This time, is a Processing Game, and it's some to do in the free time.
 ## Compiling
 
 ### Dependencies
-ESS Lib
+Minim library
+Sound library
 
 
 
