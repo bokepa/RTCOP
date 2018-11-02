@@ -1,0 +1,24 @@
+
+Intranet
+
+- Centre de competencia
+	- Presa de requisits
+	- An. Funcional
+	- Proves Integració/Acceptació
+	- Suport producció
+	- Acceptació incidencies / evolutius
+	- Analisi perfectius, disseny de sistemes d'informació
+
+- Unitat de desplegament
+	- Configuracio entorns
+	- Proves integracio/acceptacio
+	- Proves rendiment/stress/escalabilitat
+
+- Suport desenvolupador XTEC/Gencat
+	- Monitoritzacio serveis
+	- Desplegament daplicacions
+	
+- Sistemes HOST
+- Arees Dept. Educacio
+- CTITI
+- CMA
