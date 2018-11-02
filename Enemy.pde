@@ -1,24 +1,25 @@
-class Enemigo {
+class Enemy {
+  
   // position and speed
   int x = 0;
   int y = 0;
   int speed;
   
-  // type of 
-  int type;
+  // type of enemy and size
+  int type;  
   int w = 60;
   int h = 60;
 
-  int state = 0; // 0 - dead; 1 - Entring ; 2 - Climbing; 3 - Falling; 4 - On Top; 
-  boolean muerto = true;
+  int state = 0; // 0 - dead; 1 - Walking to wall ; 2 - Climbing; 3 - Falling; 4 - On Top; 
+  boolean isDead = true;
   boolean fall = false;
 
-  AniSprite aniEnemigo;
+  AniSprite enemyAnimation;
 
-  Enemigo() {
+  Enemy() {
     
     type = (int) random(3);
-    aniEnemigo = new AniSprite("malonuevo", 2);
+    enemyAnimation = new AniSprite("malonuevo", 2);
     speed = type;
     
   }
@@ -26,7 +27,7 @@ class Enemigo {
 
   void update() {
 
-    if (!muerto) {
+    if (!isDead) {
       // Move to right or left
       if (random(2) > 1) y = y - speed;
       if (random(6) > 5) x = x - speed;
@@ -41,7 +42,7 @@ class Enemigo {
       if (random(20)>19) {// Resucita muertos
         x = int(random(CASTILLO_DER));
         y = Y_MARCADOR;
-        muerto = false;
+        isDead = false;
         // numEnemigos++;
       }
     }
@@ -50,8 +51,9 @@ class Enemigo {
     }
   }
   
+  // draw function on x,y always if not dead
   void draw() {
-    if (!muerto) aniEnemigo.display(x, y);
+    if (!isDead) enemyAnimation.display(x, y);
 
   }
 }

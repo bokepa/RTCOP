@@ -1,5 +1,5 @@
 
-class Prota {
+class Player {
   int x = 0;
   int y = 40;
   int dx = 0;

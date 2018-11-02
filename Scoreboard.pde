@@ -1,10 +1,10 @@
-class Marcador {
+class Scoreboard {
 
   String textScore = "SCORE: ";
-  int puntuacion;
+  int score;
   
-  Marcador() {
-    puntuacion = 0;
+  Scoreboard() {
+    score = 0;
    
   }
   void update() {
@@ -15,7 +15,7 @@ class Marcador {
     // Letras del marcador
     fill(BLANCO, BLANCO, BLANCO);
     // Score Points
-    text("SCORE: "+ puntuacion, 5, height-5);
+    text("SCORE: "+ score, 5, height-5);
     
     // Num Fired
     text("STONES: "+ numDisparo, width*2/5,  height-5);

@@ -1,17 +1,19 @@
-class Disparo {
+class Fire {
  
   //position
   int x = 0;
   int y = 0;
-  // big
+  
+  // size and speed
   int r = 15;
   int speed = 20;
+  
   boolean activo = false;
   boolean crashed = false;
   PImage[] ston;
   int ston_i;
 
-  Disparo () {
+  Fire () {
     activo = true;
     x = prota.x;
     ston = new PImage[7];

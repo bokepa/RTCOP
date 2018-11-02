@@ -5,20 +5,20 @@ void update() {
 
    // de disparos
   for (int j = 0; j < numEnemigos; j++) {
-    Enemigo e = enemigos[j];
+    Enemy e = enemigos[j];
     
     for (int i =0; i < numDisparo; i++) {
-        Disparo d = disparos[i];
+        Fire d = disparos[i];
         
     // de disparos
-    if (!e.muerto) {
+    if (!e.isDead) {
       if (( d.x > e.x) 
           && (d.x < (e.x+e.w))
           && (d.y > e.y)
           && (d.y< e.y+e.h)
       )
       { 
-        e.muerto = false;
+        e.isDead = false;
         e.fall = true;
         d.crashed = true;
         //sound2.play();
@@ -27,13 +27,13 @@ void update() {
       }
       // de pantalla
       if (e.y < CASTILLO_ARRIBA) {
-        e.muerto = true;
+        e.isDead = true;
         numEnemigos--;
       }
       if (e.y > Y_MARCADOR) {
-        e.muerto = true;
+        e.isDead = true;
         e.fall = false;
-        marcador.puntuacion = marcador.puntuacion + 10;
+        marcador.score = marcador.score + 10;
         numEnemigos--;
       }
     }

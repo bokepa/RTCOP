@@ -2,7 +2,7 @@ import processing.sound.*;
 import ddf.minim.*;
 
 
-// ToDo
+// TODO
 // - Sprite for climber https://forum.processing.org/one/topic/sprite-sheet.html
 // - Sprite for Player
 // - Game States Control - Main Menu - Star Button
@@ -17,9 +17,10 @@ AudioPlayer snd_fire;
 AudioPlayer snd_uch;
 AudioPlayer snd_music;
 
+// Main values, screen and game stat
 int SCREEN_X = 600;
 int SCREEN_Y = 600;
-int GAME_STAT = 1;
+int GAME_STAT = 1; // 1. Playing , 2. Paused
 
 // GENERAL JUEGO
 int MAX_ENEMIGOS = 30;
@@ -41,16 +42,16 @@ int Y_MARCADOR = SCREEN_Y-20;
 int Y_PROTA = 10;
 
 // Prota
-Prota prota;
-Marcador marcador;
+Player prota;
+Scoreboard marcador;
 ColisionMgr colisionMgr;
 
 // Enemigos
-Enemigo[] enemigos;
+Enemy[] enemigos;
 int numEnemigos = 0;
 
 // Disparos
-Disparo[] disparos;
+Fire[] disparos;
 int numDisparo = 0;
 
 // Imagenes
@@ -84,14 +85,14 @@ void setup() {
   frameRate(25);
 
   // Init game objects
-  enemigos = new Enemigo[MAX_ENEMIGOS+1];
-  disparos = new Disparo[100];
-  prota = new Prota();
-  marcador = new Marcador();
+  enemigos = new Enemy[MAX_ENEMIGOS+1];
+  disparos = new Fire[100];
+  prota = new Player();
+  marcador = new Scoreboard();
   colisionMgr = new ColisionMgr();
 
   for (int i = 0; i < MAX_ENEMIGOS; i++) {
-    enemigos[i] = new Enemigo();
+    enemigos[i] = new Enemy();
   } 
 
   // Load Font for ScoreBoard
@@ -101,6 +102,7 @@ void setup() {
 
 }
 
+// load background, a couple of images.
 void loadBackground() {
 
   b = loadImage("castle_wall.png");
@@ -110,13 +112,15 @@ void loadBackground() {
   
 }
 
+// Moving enemies routine
+
 void mueveEnemigos() {
   if (numEnemigos < MAX_ENEMIGOS) {
     // Crea nuevo enemigo
     if (random(20) >=8) {
       enemigos[numEnemigos].x = int(random(CASTILLO_DER));
       enemigos[numEnemigos].y = Y_MARCADOR;
-      enemigos[numEnemigos].muerto = false;
+      enemigos[numEnemigos].isDead = false;
       numEnemigos++;
     }
   }
@@ -131,7 +135,7 @@ void mueveEnemigos() {
 void mouseClicked() {
 
   if (numDisparo<100) {
-    disparos[numDisparo]  = new Disparo();
+    disparos[numDisparo]  = new Fire();
     numDisparo++;
     snd_fire.play(); snd_fire.rewind();
   }
@@ -178,12 +182,11 @@ void draw() {
     // Menu principal
     pintaMenu();
   } else if (GAME_STAT ==1) {
-
     image(b, 0, 0);
     updateAll();
     drawAll();
-  }
-}
+  } // TODO, game Paused (state 2)
+} 
 
 void keyPressed() {
   
@@ -199,7 +202,7 @@ void keyReleased()  {
   
   if (key == ' ')  {
     if (numDisparo<100) {
-      disparos[numDisparo]  = new Disparo();
+      disparos[numDisparo]  = new Fire();
       numDisparo++;
       snd_fire.play(); snd_fire.rewind();
     }
