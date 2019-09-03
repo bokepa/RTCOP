@@ -1,7 +1,8 @@
 # RTCOP - Return to Castle of Perre
 
 ## Game
-This game is and old-style tower defender, based on old memory of a Spectrum Game where some kind of spiders or men climb up to catch the player.
+This game is and old-style tower defender, based on old memory of a Spectrum Game where some kind of bad-spider-boys climb up to catch the good-player-guy.
+
 This time, is a Processing Game, and it's some to do in the free time.
 
 ### Game Rules
